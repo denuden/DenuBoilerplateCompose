@@ -20,6 +20,7 @@ uiTextGoogleFonts = "1.7.3"
 room = "2.6.1"
 bcrypt = "0.10.2"
 security = "1.1.0-alpha06"
+retrofit = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,6 +65,9 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 bcrypt = { group = "at.favre.lib", name = "bcrypt", version.ref = "bcrypt" }
 androidx-security = { module = "androidx.security:security-crypto", version.ref = "security" }
 
+#Retrofit
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit2-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
