@@ -113,4 +113,8 @@ dependencies {
 //    Retrofit
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.gson)
+
+//    Coil
+    implementation(libs.coil)
+    implementation(libs.coil.network)
 }
