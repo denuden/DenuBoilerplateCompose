@@ -117,4 +117,7 @@ dependencies {
 //    Coil
     implementation(libs.coil)
     implementation(libs.coil.network)
+
+    //    Kotlin Reflect
+    implementation(libs.kotlin.reflect)
 }
