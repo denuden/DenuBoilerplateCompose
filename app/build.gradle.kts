@@ -83,7 +83,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //    Navigations
+//    Google Font
+    implementation(libs.androidx.ui.text.google.fonts)
+
+//    Navigation
     implementation (libs.androidx.navigation.compose)
 
 //    Hilt
@@ -98,6 +101,7 @@ dependencies {
 
 //    work manager
     implementation(libs.androidx.work)
+
 //    icons extended
     implementation(libs.androidx.material.icons.extended)
 
@@ -114,10 +118,17 @@ dependencies {
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.gson)
 
+//    Ok HTTP
+    implementation(libs.logging.interceptor)
+
 //    Coil
     implementation(libs.coil)
     implementation(libs.coil.network)
+    implementation(libs.coil.test)
 
-    //    Kotlin Reflect
+//    Kotlin Reflect
     implementation(libs.kotlin.reflect)
+    
+//    Shimmer
+    implementation(libs.shimmer)
 }
