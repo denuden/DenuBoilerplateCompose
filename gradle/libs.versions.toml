@@ -26,6 +26,7 @@ coil = "3.0.0-rc01"
 material3 = "1.3.0"
 reflect = "2.0.21"
 shimmer = "1.3.1"
+paging = "3.3.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -86,6 +87,10 @@ coil-test = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil"}
 
 #Shimmer/Skeleton Loading
 shimmer = { module = "com.valentinilk.shimmer:compose-shimmer", version.ref = "shimmer" }
+
+#Paging3
+paging = {  module = "androidx.paging:paging-runtime", version.ref = "paging" }
+paging-compose = {  module = "androidx.paging:paging-compose", version.ref = "paging" }
 
 
 [plugins]

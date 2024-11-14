@@ -61,3 +61,4 @@
     public static int i(...);
 }
 
+-keep class com.gmail.denuelle42.denuboilerplate.data.remote.models.* { *; }

@@ -35,6 +35,8 @@ android {
             // Android Gradle plugin.
             isShrinkResources = true
 
+            // Cannot be debugged in logcat
+            isDebuggable = false
             proguardFiles(
                 // Includes the default ProGuard rules files that are packaged with
                 // the Android Gradle plugin. To learn more, go to the section about
@@ -44,8 +46,15 @@ android {
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            isMinifyEnabled = false // Keeps debugging info for better traceability in development
+            applicationIdSuffix = ".debug" // Optional: helps differentiate debug APK
+            versionNameSuffix = "-debug"   // Optional: appends "-debug" to version name
+            isDebuggable = true
+        }
     }
-    compileOptions {
+
+     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -131,4 +140,8 @@ dependencies {
     
 //    Shimmer
     implementation(libs.shimmer)
+
+//    Paging 3
+    implementation(libs.paging)
+    implementation(libs.paging.compose)
 }
