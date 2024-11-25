@@ -1,5 +1,6 @@
 package com.gmail.denuelle42.denuboilerplate.di.modules
 
+import com.gmail.denuelle42.denuboilerplate.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -7,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 //https://medium.com/@psarakisnick/clean-networking-with-retrofit-and-interceptor-in-kotlin-63a9ac85def2
@@ -27,6 +28,9 @@ object RetrofitModule {
         }
     }
 
+    /**
+     * Provides custom httpclient for adding interceptors
+     */
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -47,8 +51,8 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl("BASE_URL")
-            .addConverterFactory(MoshiConverterFactory.create().asLenient().withNullSerialization())
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client).build()
     }
 }
