@@ -34,7 +34,8 @@ class NetworkUtil {
 /**
  * Pass a mime type to a request body for multipart form
  */
-fun File.asNetWorkRequestBody(mimeType: String): RequestBody {
+fun File?.asNetWorkRequestBody(mimeType: String): RequestBody {
+    if(this == null) return "".toRequestBody("text/plain".toMediaTypeOrNull())
     return this.asRequestBody(mimeType.toMediaTypeOrNull())
 }
 

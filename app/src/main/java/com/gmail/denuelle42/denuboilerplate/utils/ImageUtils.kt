@@ -1,11 +1,10 @@
-package com.gmail.denuelle42.denuanime.utils
+package com.gmail.denuelle42.denuboilerplate.utils
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Matrix
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 //import androidmads.library.qrgenearator.QRGContents
 //import androidmads.library.qrgenearator.QRGEncoder
 //import androidx.camera.core.CameraSelector
@@ -94,3 +93,8 @@ fun Bitmap.centerCrop(desiredWidth : Int, desiredHeight : Int) : Bitmap {
     return Bitmap.createBitmap(this, xStart, yStart, desiredWidth, desiredHeight)
 }
 
+fun uriToBitmap(context: Context, uri: Uri): Bitmap? {
+    return context.contentResolver.openInputStream(uri)?.use { inputStream ->
+        BitmapFactory.decodeStream(inputStream)
+    }
+}

@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
  * https://www.youtube.com/watch?v=KFazs62lIkE
  *
  * Observe a flow as events, making it lifecycle aware
- * where it will trigger everytime lifecycle state changes
+ * where it will trigger and reset everytime lifecycle state changes
  * While also being able to pass keys as potential triggers
  *
  * Making flow to only be collected from when LifeCycle is STARTED
