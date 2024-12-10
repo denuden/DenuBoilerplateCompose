@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuanime.di.modules
+package com.gmail.denuelle42.denuboilerplate.di.modules
 
 import dagger.Module
 import dagger.Provides
