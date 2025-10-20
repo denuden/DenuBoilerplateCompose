@@ -69,7 +69,7 @@ fun Modifier.clickableDelayed(
 /**
  * Go to specified URL, parse an action if an app can open it outside the application
  */
-fun Context.goURL(url: String) {
+fun Context.goIntent(url: String) {
     try {
         val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(myIntent)
@@ -78,3 +78,8 @@ fun Context.goURL(url: String) {
         e.printStackTrace()
     }
 }
+
+/**
+ * Return specified string if null, variation of orEmpty()
+ */
+fun String?.orEmpty(string: String): String = this ?: string
