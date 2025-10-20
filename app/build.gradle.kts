@@ -77,7 +77,6 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -91,6 +90,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+//    Lifecycle
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
 //    Google Font
     implementation(libs.androidx.ui.text.google.fonts)
@@ -117,6 +120,7 @@ dependencies {
 //    Room DB
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.room.paging)
     ksp(libs.room.compiler)
 
 //    Encryption
@@ -125,7 +129,7 @@ dependencies {
 
 //    Retrofit
     implementation(libs.retrofit2)
-    implementation(libs.retrofit2.gson)
+    implementation(libs.retrofit2.moshi)
 
 //    Ok HTTP
     implementation(libs.logging.interceptor)
