@@ -1,10 +1,10 @@
-package com.gmail.denuelle42.aiprompter
+package com.gmail.denuelle42.denuboilerplate
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.gmail.denuelle42.aiprompter.navigation.AppRootScreens
+import com.gmail.denuelle42.denuboilerplate.navigation.AppRootScreens
 
 @Composable
 fun AppRoot() {
@@ -12,7 +12,7 @@ fun AppRoot() {
 
     NavHost(
         navController = navController,
-        startDestination = "splash"
+        startDestination = AppRootScreens.Splash.toString()
     ) {
         composable(AppRootScreens.Splash.toString()) {
             SplashScreen(
@@ -25,9 +25,7 @@ fun AppRoot() {
         }
 
         composable(AppRootScreens.Main.toString()) {
-            MainScreen(
-                navController = navController
-            ) // your real app with all nested nav
+            MainScreen( )
         }
     }
 }

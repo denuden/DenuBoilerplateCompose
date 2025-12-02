@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.aiprompter
+package com.gmail.denuelle42.denuboilerplate
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,8 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.compose.AIPrompterTheme
-import com.gmail.denuelle42.aiprompter.navigation.NavigationScreens
+import com.gmail.denuelle42.denuboilerplate.ui.theme.DenuBoilerplateTheme
 import kotlinx.coroutines.delay
 
 @Composable
@@ -26,7 +25,7 @@ fun SplashScreen(
 
     Box(modifier = Modifier.fillMaxSize()){
         Text(
-            text = "AI PROMPTER",
+            text = "SPLASHSCREEN",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.align(
                 Alignment.Center
@@ -38,7 +37,7 @@ fun SplashScreen(
 @Preview
 @Composable
 private fun SplashScreenPreview() {
-    AIPrompterTheme {
+    DenuBoilerplateTheme {
         Surface(modifier = Modifier.background(color = MaterialTheme.colorScheme.surface).fillMaxSize()) {
             SplashScreen(){}
         }

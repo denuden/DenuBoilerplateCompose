@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuanime
+package com.gmail.denuelle42.denuboilerplate
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -33,22 +33,23 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.gmail.denuelle42.denuanime.navigation.AnimeScreens
-import com.gmail.denuelle42.denuanime.navigation.AppNavigation
-import com.gmail.denuelle42.denuanime.navigation.NavigationScreens
-import com.gmail.denuelle42.denuanime.navigation.getTopBarTitle
-import com.gmail.denuelle42.denuanime.ui.theme.DenuAnimeTheme
-import com.gmail.denuelle42.denuanime.utils.ObserveAsEvents
-import com.gmail.denuelle42.denuanime.utils.SnackBarController
+import androidx.navigation.compose.rememberNavController
+import com.gmail.denuelle42.denuboilerplate.navigation.AppNavigation
+import com.gmail.denuelle42.denuboilerplate.navigation.NavigationScreens
+import com.gmail.denuelle42.denuboilerplate.navigation.getTopBarTitle
+import com.gmail.denuelle42.denuboilerplate.ui.theme.DenuBoilerplateTheme
+import com.gmail.denuelle42.denuboilerplate.utils.ObserveAsEvents
+import com.gmail.denuelle42.denuboilerplate.utils.SnackBarController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(modifier: Modifier = Modifier, navController: NavHostController) {
+fun MainScreen(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+
     val context = LocalContext.current
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -96,14 +97,6 @@ fun MainScreen(modifier: Modifier = Modifier, navController: NavHostController) 
         gesturesEnabled = topBarState, //only enable gestures if topbar is visible
         drawerState = drawerState,
         drawerContent = {
-            SideBarContent(onNavigate = {
-                scope.launch {
-                    drawerState.close()
-                }
-                navController.navigate(it) {
-                    launchSingleTop = true
-                }
-            })
         }
     ) {
         Scaffold(
@@ -127,7 +120,6 @@ fun MainScreen(modifier: Modifier = Modifier, navController: NavHostController) 
                         navController.popBackStack()
                     },
                     onNavigate = {
-                        navController.navigate(AnimeScreens.AnimeSearchNavigation)
                     }
                 )
             },
@@ -180,16 +172,16 @@ fun TopAppBarContent(
 
         actions = {
             if (topBarState) {
-                IconButton(onClick = { onNavigate(AnimeScreens.AnimeSearchNavigation) }) {
+                IconButton(onClick = {}) {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = stringResource(R.string.label_search)
+                        contentDescription = "Search"
                     )
                 }
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
                         imageVector = Icons.Default.Favorite,
-                        contentDescription = stringResource(R.string.label_favorite)
+                        contentDescription = null
                     )
                 }
             }
@@ -201,7 +193,7 @@ fun TopAppBarContent(
 @Preview
 @Composable
 private fun MainScreenPreview() {
-    DenuAnimeTheme {
+    DenuBoilerplateTheme  {
         Surface(
             color = MaterialTheme.colorScheme.surface,
         ) {
