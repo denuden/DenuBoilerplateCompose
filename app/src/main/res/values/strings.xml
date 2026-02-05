@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DenuBoilerplate</string>
+
+    <string name="error_error">Error</string>
 </resources>

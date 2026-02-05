@@ -7,20 +7,48 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import com.gmail.denuelle42.denuboilerplate.ui.sample.SampleViewModel
 import com.gmail.denuelle42.denuboilerplate.ui.theme.DenuBoilerplateTheme
+import com.gmail.denuelle42.denuboilerplate.utils.ComposableLifecycle
+import com.gmail.denuelle42.denuboilerplate.utils.ObserveAsEvents
+import com.gmail.denuelle42.denuboilerplate.utils.OneTimeEvents
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun SplashScreen(
-    onFinished: () -> Unit
+    onFinished: (isLoggedIn : Boolean) -> Unit,
+    viewModel : SampleViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(Unit) {
-        delay(1500)  // fake loading
-        onFinished()
+
+    ObserveAsEvents(viewModel.channel) {
+        when(it){
+            is OneTimeEvents.OnNavigate -> {
+                //if success
+//                if(it.route == AuthScreens.SplashNavigation){
+//                    onFinished(true)
+//                } else { //if unauthorized
+//                    onFinished(false)
+//                }
+            }
+            else -> Unit
+        }
+    }
+
+    val scope = rememberCoroutineScope()
+    ComposableLifecycle { source, event ->
+        if (event == Lifecycle.Event.ON_START) {
+            scope.launch {
+                delay(1000)
+//                viewModel.onEvent(AuthScreenEvents.OnRefreshToken)
+            }
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -39,7 +67,6 @@ fun SplashScreen(
 private fun SplashScreenPreview() {
     DenuBoilerplateTheme {
         Surface(modifier = Modifier.background(color = MaterialTheme.colorScheme.surface).fillMaxSize()) {
-            SplashScreen(){}
         }
     }
 }

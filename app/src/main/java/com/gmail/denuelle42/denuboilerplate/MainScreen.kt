@@ -39,6 +39,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gmail.denuelle42.denuboilerplate.navigation.AppNavigation
 import com.gmail.denuelle42.denuboilerplate.navigation.NavigationScreens
+import com.gmail.denuelle42.denuboilerplate.navigation.RootGraphs
 import com.gmail.denuelle42.denuboilerplate.navigation.getTopBarTitle
 import com.gmail.denuelle42.denuboilerplate.ui.theme.DenuBoilerplateTheme
 import com.gmail.denuelle42.denuboilerplate.utils.ObserveAsEvents
@@ -47,7 +48,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(isLoggedIn: Boolean) {
     val navController = rememberNavController()
 
     val context = LocalContext.current
@@ -126,7 +127,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
         ) { contentPadding ->
             // Screen content
             Box(modifier = Modifier.padding(contentPadding)) {
-                AppNavigation(navController)
+                AppNavigation(
+                    navController,
+                    startDestination = if (isLoggedIn) RootGraphs.HomeGraph else RootGraphs.AuthGraph)
             }
         }
     }

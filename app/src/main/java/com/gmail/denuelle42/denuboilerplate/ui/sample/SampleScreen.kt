@@ -12,14 +12,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.Navigation
 import com.gmail.denuelle42.denuboilerplate.navigation.NavigationScreens
 import com.gmail.denuelle42.denuboilerplate.ui.common.dialog.ErrorDialog
 import com.gmail.denuelle42.denuboilerplate.utils.ComposableLifecycle
 import com.gmail.denuelle42.denuboilerplate.utils.ObserveAsEvents
 import com.gmail.denuelle42.denuboilerplate.utils.OneTimeEvents
 import com.gmail.denuelle42.denuboilerplate.utils.SnackBarController
-import com.gmail.denuelle42.denuboilerplate.utils.handleInputError
+import com.gmail.denuelle42.denuboilerplate.utils.network.handleInputError
 import kotlinx.coroutines.launch
 
 @Composable

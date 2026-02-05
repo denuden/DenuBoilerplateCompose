@@ -40,17 +40,24 @@ import kotlinx.serialization.Serializable
  *   MainScreens.FavoritesNavigation → "/main/favorites"
  */
 
-sealed class RootGraphs {
-    @Serializable
-    data object SampleGraph : RootGraphs()
-}
-
 /**
  * For splashscreen and simple navigation
  */
-enum class AppRootScreens{
-    Splash,
-    Main
+sealed interface AppRootScreens {
+    @Serializable
+    data object Splash : AppRootScreens
+
+    @Serializable
+    data class Main(val isLoggedIn: Boolean) : AppRootScreens
+}
+
+sealed class RootGraphs {
+    @Serializable
+    data object SampleGraph : RootGraphs()
+    @Serializable
+    data object AuthGraph : RootGraphs()
+    @Serializable
+    data object HomeGraph : RootGraphs()
 }
 
 

@@ -2,8 +2,8 @@ package com.gmail.denuelle42.denuboilerplate.data.repositories.sample
 
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.response.GetResponse
-import com.gmail.denuelle42.denuboilerplate.utils.ALL_IMAGE_MIME_TYPE
-import com.gmail.denuelle42.denuboilerplate.utils.asNetWorkRequestBody
+import com.gmail.denuelle42.denuboilerplate.utils.network.ALL_IMAGE_MIME_TYPE
+import com.gmail.denuelle42.denuboilerplate.utils.network.asNetWorkRequestBody
 import dagger.hilt.android.scopes.ViewModelScoped
 import okhttp3.MultipartBody
 import retrofit2.HttpException

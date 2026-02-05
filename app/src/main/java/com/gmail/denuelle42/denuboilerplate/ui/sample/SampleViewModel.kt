@@ -1,14 +1,15 @@
 package com.gmail.denuelle42.denuboilerplate.ui.sample
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.gmail.denuelle42.denuboilerplate.data.remote.error.ErrorModel
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
 import com.gmail.denuelle42.denuboilerplate.domain.repositories.sample.SampleUseCase
 import com.gmail.denuelle42.denuboilerplate.utils.OneTimeEvents
-import com.gmail.denuelle42.denuboilerplate.utils.ResultState
-import com.gmail.denuelle42.denuboilerplate.utils.asResult
+import com.gmail.denuelle42.denuboilerplate.utils.network.ResultState
+import com.gmail.denuelle42.denuboilerplate.utils.network.asResult
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,7 +40,7 @@ class SampleViewModel @Inject constructor(
                     sampleUseCase.getRequest(GetRequest()).asResult().onEach { res ->
                         when(res) {
                             ResultState.Completed -> _stateFlow.update { it.copy(isLoading = false) }
-                            is ResultState.Error -> Log.e(TAG, res.exception.toString())
+                            is ResultState.Error -> onError(res.exception)
                             ResultState.Loading -> _stateFlow.update { it.copy(isLoading = true) }
                             is ResultState.Success ->  _stateFlow.update {
                                 it.copy(name = event.name)
@@ -46,6 +48,37 @@ class SampleViewModel @Inject constructor(
                         }
                     }
 
+                }
+            }
+        }
+    }
+
+    private fun onError(e: Throwable?) {
+        when (e) {
+            is HttpException -> {
+                val statusCode = e.code()
+                val errorBody = e.response()?.errorBody()
+                val gson = Gson()
+                val type = object : TypeToken<ErrorModel>() {}.type
+                val errorResponse: ErrorModel? = gson.fromJson(errorBody?.charStream(), type)
+
+                // Example: Handle specific status
+                when(statusCode) {
+                    401 -> {
+//                        sendEvent(OneTimeEvents.OnNavigate(AuthScreens.LoginNavigation))
+                        return
+                    }
+                }
+
+                //if this is not null, then there is a message regarding bad request of params
+                if (errorResponse?.errors != null) {
+                    _stateFlow.update {
+                        it.copy(
+                        )
+                    }
+                    sendEvent(OneTimeEvents.ShowInputError(errorResponse.errors))
+                } else if (errorResponse?.message != null) {
+                    sendEvent(OneTimeEvents.ShowError(errorResponse.message))
                 }
             }
         }

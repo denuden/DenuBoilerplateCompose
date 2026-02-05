@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuboilerplate.utils
+package com.gmail.denuelle42.denuboilerplate.utils.network
 
 import com.gmail.denuelle42.denuboilerplate.data.remote.error.ErrorData
 
