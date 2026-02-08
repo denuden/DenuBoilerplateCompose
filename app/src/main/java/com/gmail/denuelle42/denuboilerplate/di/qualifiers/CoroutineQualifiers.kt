@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuboilerplate.di.modules
+package com.gmail.denuelle42.denuboilerplate.di.qualifiers
 
 import javax.inject.Qualifier
 

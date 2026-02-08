@@ -1,6 +1,6 @@
 package com.gmail.denuelle42.denuboilerplate.di.modules
 
-import com.gmail.denuelle42.denuboilerplate.di.modules.DefaultDispatcher
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.DefaultDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

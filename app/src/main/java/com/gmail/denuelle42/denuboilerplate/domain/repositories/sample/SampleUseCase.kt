@@ -1,6 +1,6 @@
 package com.gmail.denuelle42.denuboilerplate.domain.repositories.sample
 
-import com.gmail.denuelle42.denuboilerplate.di.modules.IoDispatcher
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.IoDispatcher
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.SampleRepository
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.response.GetResponse

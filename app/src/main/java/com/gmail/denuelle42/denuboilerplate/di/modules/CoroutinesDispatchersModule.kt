@@ -1,5 +1,9 @@
 package com.gmail.denuelle42.denuboilerplate.di.modules
 
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.DefaultDispatcher
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.IoDispatcher
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.MainDispatcher
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.MainImmediateDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

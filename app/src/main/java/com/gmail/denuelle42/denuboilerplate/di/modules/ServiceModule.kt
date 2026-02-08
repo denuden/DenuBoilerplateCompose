@@ -3,6 +3,8 @@ package com.gmail.denuelle42.denuboilerplate.di.modules
 import com.gmail.denuelle42.denuboilerplate.data.remote.services.sample.FirebaseSampleServiceImpl
 import com.gmail.denuelle42.denuboilerplate.data.remote.services.sample.RetrofitSampleServiceImpl
 import com.gmail.denuelle42.denuboilerplate.data.remote.services.sample.SampleService
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.FirebaseSample
+import com.gmail.denuelle42.denuboilerplate.di.qualifiers.RetrofitSample
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,8 +19,10 @@ abstract class ServiceModule {
 
     //select either retrofit impl or firebase impl
     @Binds
+    @FirebaseSample
     abstract fun bindSampleService(sampleServiceImpl: FirebaseSampleServiceImpl): SampleService
 
     @Binds
+    @RetrofitSample
     abstract fun bindSampleService(sampleServiceImpl: RetrofitSampleServiceImpl): SampleService
 }
