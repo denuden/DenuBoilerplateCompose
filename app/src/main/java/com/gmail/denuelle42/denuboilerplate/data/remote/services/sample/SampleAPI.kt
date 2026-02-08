@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuboilerplate.data.repositories.sample
+package com.gmail.denuelle42.denuboilerplate.data.remote.services.sample
 
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
 import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.response.GetResponse

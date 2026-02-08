@@ -1,6 +1,7 @@
 package com.gmail.denuelle42.denuboilerplate.di.modules
 
-import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.SampleAPI
+import com.gmail.denuelle42.denuboilerplate.data.remote.services.sample.RetrofitSampleServiceImpl
+import com.gmail.denuelle42.denuboilerplate.data.remote.services.sample.SampleAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
