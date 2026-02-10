@@ -1,6 +1,5 @@
-package com.gmail.denuelle42.denuboilerplate.utils.security
+package com.gmail.denuelle42.denuboilerplate.data.storage
 
-import androidx.datastore.core.Serializer
 import kotlinx.serialization.Serializable
 
 @Serializable

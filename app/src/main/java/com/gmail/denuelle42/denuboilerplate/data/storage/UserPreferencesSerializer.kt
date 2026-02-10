@@ -1,6 +1,7 @@
-package com.gmail.denuelle42.denuboilerplate.utils.security
+package com.gmail.denuelle42.denuboilerplate.data.storage
 
 import androidx.datastore.core.Serializer
+import com.gmail.denuelle42.denuboilerplate.utils.security.Crypto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
