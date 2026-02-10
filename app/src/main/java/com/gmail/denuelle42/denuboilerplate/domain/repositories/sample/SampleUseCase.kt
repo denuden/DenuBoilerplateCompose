@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
+//UseCase = what the app does with that data to satisfy business / UI logic
 @ViewModelScoped
 class SampleUseCase @Inject constructor(
     private val sampleRepository: SampleRepository,
@@ -18,7 +19,7 @@ class SampleUseCase @Inject constructor(
 ) {
     fun getRequest(request: GetRequest) : Flow<GetResponse> {
         return flow {
-            val response = sampleRepository.getRequest(request)
+            val response = sampleRepository.login(request)
             emit(response)
         }.flowOn(ioDispatcher)
     }

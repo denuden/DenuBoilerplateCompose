@@ -7,6 +7,7 @@ import com.gmail.denuelle42.denuboilerplate.di.qualifiers.FirebaseSample
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
+//Repository = all the ways the app fetches, persists, or cleans data
 @ViewModelScoped
 class SampleRepository @Inject constructor(
     @FirebaseSample private val service : SampleService
