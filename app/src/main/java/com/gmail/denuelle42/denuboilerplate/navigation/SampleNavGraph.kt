@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.gmail.denuelle42.denuboilerplate.data.remote.models.SampleModel
+import com.gmail.denuelle42.denuboilerplate.domain.models.SampleModel
 import com.gmail.denuelle42.denuboilerplate.utils.parcelableType
 import kotlin.reflect.typeOf
 
@@ -33,7 +33,9 @@ fun NavGraphBuilder.addSampleNavGraph(
 
             //            HomeScreen(
 //                onPopBackStack = { navController.popBackStack() },
-//                onNavigate = { navController.navigate(it) }
+//            onNavigate = { route, navOptions ->
+//                navController.navigate(route, navOptions = navOptions)
+//            },
 //            )
         }
 

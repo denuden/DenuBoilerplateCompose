@@ -61,4 +61,7 @@
     public static int i(...);
 }
 
--keep class com.gmail.denuelle42.denuboilerplate.data.remote.models.* { *; }
+-keep class com.gmail.denuelle42.denuboilerplate.data.remote.error.* { *; }
+
+-keep class com.gmail.denuelle42.denuboilerplate.data.remote.models.sample.response.* { *; }
+-keep class com.gmail.denuelle42.denuboilerplate.data.remote.models.sample.request.* { *; }

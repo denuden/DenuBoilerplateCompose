@@ -1,6 +1,6 @@
 package com.gmail.denuelle42.denuboilerplate.navigation
 
-import com.gmail.denuelle42.denuboilerplate.data.remote.models.SampleModel
+import com.gmail.denuelle42.denuboilerplate.domain.models.SampleModel
 import kotlinx.serialization.Serializable
 
 /**

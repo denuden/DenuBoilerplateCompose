@@ -3,18 +3,15 @@ package com.gmail.denuelle42.denuboilerplate.ui.sample
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.denuelle42.denuboilerplate.data.remote.error.ErrorModel
-import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
-import com.gmail.denuelle42.denuboilerplate.domain.repositories.sample.SampleUseCase
+import com.gmail.denuelle42.denuboilerplate.data.remote.models.sample.request.GetRequest
+import com.gmail.denuelle42.denuboilerplate.data.repositories.SampleRepository
 import com.gmail.denuelle42.denuboilerplate.utils.OneTimeEvents
-import com.gmail.denuelle42.denuboilerplate.utils.network.ResultState
-import com.gmail.denuelle42.denuboilerplate.utils.network.asResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -23,8 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SampleViewModel @Inject constructor(
-    private val sampleUseCase: SampleUseCase
-): ViewModel(){
+    private val sampleRepository: SampleRepository
+) : ViewModel() {
     private val TAG = SampleViewModel::class.java.simpleName
 
     private val _channel = Channel<OneTimeEvents>()
@@ -33,22 +30,41 @@ class SampleViewModel @Inject constructor(
     private val _stateFlow = MutableStateFlow<SampleScreenState>(SampleScreenState())
     val stateFlow = _stateFlow.asStateFlow()
 
-    fun onEvent(event : SampleScreenEvents) {
-        when(event){
+    fun onEvent(event: SampleScreenEvents) {
+        when (event) {
             is SampleScreenEvents.OnGetEvent -> {
+                //OLD : Sample of returning a flow and using asResult()
+                //to map the flow and collect int
+//                viewModelScope.launch {
+//                    sampleUseCase.getRequest(GetRequest()).asResult().onEach { res ->
+//                        when(res) {
+//                            ResultState.Completed -> _stateFlow.update { it.copy(isLoading = false) }
+//                            is ResultState.Error -> Log.e(TAG, res.exception.toString())
+//                            ResultState.Loading -> _stateFlow.update { it.copy(isLoading = true) }
+//                            is ResultState.Success ->  _stateFlow.update {
+//                                it.copy(name = event.name)
+//                            }
+//                        }
+//                    }.collect()
+//                }
+
+                //Sample of one off events coming from a repository and suspending function
                 viewModelScope.launch {
-                    sampleUseCase.getRequest(GetRequest()).asResult().onEach { res ->
-                        when(res) {
-                            ResultState.Completed -> _stateFlow.update { it.copy(isLoading = false) }
-                            is ResultState.Error -> onError(res.exception)
-                            ResultState.Loading -> _stateFlow.update { it.copy(isLoading = true) }
-                            is ResultState.Success ->  _stateFlow.update {
-                                it.copy(name = event.name)
-                            }
+                    _stateFlow.update { it.copy(isLoading = true) }
+
+                    try {
+                        val user = sampleRepository.login(GetRequest())
+                        _stateFlow.update { it.copy(isLoading = false, name = user.name.orEmpty()) }
+                    } catch (e: Exception) {
+                        _stateFlow.update {
+                            it.copy(
+                                isLoading = false,
+                                name = e.message ?: "Something went wrong"
+                            )
                         }
                     }
-
                 }
+
             }
         }
     }
@@ -63,7 +79,7 @@ class SampleViewModel @Inject constructor(
                 val errorResponse: ErrorModel? = gson.fromJson(errorBody?.charStream(), type)
 
                 // Example: Handle specific status
-                when(statusCode) {
+                when (statusCode) {
                     401 -> {
 //                        sendEvent(OneTimeEvents.OnNavigate(AuthScreens.LoginNavigation))
                         return
@@ -80,6 +96,10 @@ class SampleViewModel @Inject constructor(
                 } else if (errorResponse?.message != null) {
                     sendEvent(OneTimeEvents.ShowError(errorResponse.message))
                 }
+            }
+
+            else -> {
+                sendEvent(OneTimeEvents.ShowError(e?.message.orEmpty()))
             }
         }
     }

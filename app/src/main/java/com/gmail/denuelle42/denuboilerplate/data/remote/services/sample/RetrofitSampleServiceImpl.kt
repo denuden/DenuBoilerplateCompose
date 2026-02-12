@@ -1,7 +1,7 @@
 package com.gmail.denuelle42.denuboilerplate.data.remote.services.sample
 
-import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.request.GetRequest
-import com.gmail.denuelle42.denuboilerplate.data.repositories.sample.response.GetResponse
+import com.gmail.denuelle42.denuboilerplate.data.remote.models.sample.request.GetRequest
+import com.gmail.denuelle42.denuboilerplate.data.remote.models.sample.response.GetResponse
 import com.gmail.denuelle42.denuboilerplate.utils.network.ALL_IMAGE_MIME_TYPE
 import com.gmail.denuelle42.denuboilerplate.utils.network.asNetWorkRequestBody
 import okhttp3.MultipartBody

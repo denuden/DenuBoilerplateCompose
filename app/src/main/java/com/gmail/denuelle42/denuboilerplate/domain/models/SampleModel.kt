@@ -1,4 +1,4 @@
-package com.gmail.denuelle42.denuboilerplate.data.remote.models
+package com.gmail.denuelle42.denuboilerplate.domain.models
 
 import android.os.Parcelable
 import androidx.annotation.Keep
