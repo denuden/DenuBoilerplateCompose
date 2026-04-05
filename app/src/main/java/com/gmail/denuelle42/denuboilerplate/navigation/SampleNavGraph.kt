@@ -24,7 +24,7 @@ fun NavGraphBuilder.addSampleNavGraph(
      * Sample **
      *  navigation<RootGraphs.AnimeGraph>(startDestination = AnimeScreens.AnimeDetailsNavigation(id = 0)){}
      */
-    navigation<RootGraphs.SampleGraph>(startDestination = SampleScreens.SampleNavigation){
+    navigation<RootGraphs.SampleGraph>(startDestination = SampleScreens.SampleDetailsNavigation(SampleModel(0, "name"))){
 
 //        Old-school NavType / parcelableType approach
         composable<SampleScreens.SampleDetailsNavigation>(typeMap = mapOf(typeOf<SampleModel>() to parcelableType<SampleModel>())) {
@@ -39,6 +39,7 @@ fun NavGraphBuilder.addSampleNavGraph(
 //            )
         }
 
+        //update 2026: for simple and not data class models, just use it straight up like this
         //Type-Safe Navigation (new Compose API)
 //        composable<SampleScreens.SampleDetailsNavigation> {
 //            val args = it.toRoute<SampleScreens.SampleDetailsNavigation>()
